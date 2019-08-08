@@ -9,13 +9,32 @@ import { ContarClicksDirective } from './directives/contar-clicks.directive';
 import { Routes, RouterModule } from '@angular/router';
 import { DetalleComponent } from './detalle/detalle.component';
 import { LugaresComponent } from './lugares/lugares.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { LugaresService } from './services/lugares.services';
+import { AngularFireModule } from "angularfire2";
+import { AngularFireDatabaseModule } from "angularfire2/database";
+import { AngularFireAuthModule } from "angularfire2/auth";
+import { CrearComponent } from './crear/crear.component';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 const appRoutes: Routes =
 [
   {path: '', component: LugaresComponent},
   {path: 'lugares', component: LugaresComponent},
-  {path: 'detalle', component: DetalleComponent}
+  {path: 'contacto', component: ContactoComponent},
+  {path: 'crear', component: CrearComponent},
+  {path: 'detalle/:id', component: DetalleComponent}
 ];
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyAhEuQeZw-859qVuua5d1n8xa1T11TN9Z8",
+  authDomain: "platzisquare-248502.firebaseapp.com",
+  databaseURL: "https://platzisquare-248502.firebaseio.com",
+  projectId: "platzisquare-248502",
+  storageBucket: "",
+  messagingSenderId: "1089390303941",
+  appId: "1:1089390303941:web:b5a90af8f43c9c21"
+};
 
 @NgModule({
   declarations: [
@@ -23,16 +42,24 @@ const appRoutes: Routes =
     ResaltarDirective,
     ContarClicksDirective,
     DetalleComponent,
-    LugaresComponent
+    LugaresComponent,
+    ContactoComponent,
+    CrearComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     AgmCoreModule.forRoot({ apiKey: 'AIzaSyAwSSgZJ4t8wwfS5U980B0WWhOMlCe40fE' }),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(firebaseConfig),
   ],
-  providers: [],
+  providers: [
+    LugaresService,
+    AngularFirestore
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

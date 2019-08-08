@@ -1,0 +1,16 @@
+<div class="card card-body bg-light">
+    <span><a [routerLink]="['/lugares']">Lugares</a> / Contacto</span>
+</div>
+<div class="container">
+    <label for="nombre">Nombre</label>
+    <input type="text" class="form-control">
+
+    <label for="correo">Correo</label>
+    <input type="email" class="form-control">
+
+    <label for="mensaje">Mensaje</label>
+    <textarea class="form-control" rows="6"></textarea>
+    <hr>
+    <a class="btn btn-primary">Enviar</a>
+    <a class="btn btn-light" [routerLink]="['/lugares']">Cancelar</a>
+</div>

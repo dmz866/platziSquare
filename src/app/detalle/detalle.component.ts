@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { LugaresComponent } from '../lugares/lugares.component';
+import { LugaresService } from '../services/lugares.services';
 
 @Component({
   selector: 'app-detalle',
@@ -6,5 +9,16 @@ import { Component } from '@angular/core';
 })
 export class DetalleComponent
 {
+  id = null;
+  pais;
+  paises: any;
+
+  constructor(private route: ActivatedRoute, private lugaresServ: LugaresService)
+  {
+    this.paises = lugaresServ.getPaises();
+    this.id = this.route.snapshot.params['id'];
+    this.pais = lugaresServ.buscarPais(this.id);
+  }
+
 
 }

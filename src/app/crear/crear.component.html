@@ -1,0 +1,22 @@
+<div class="card card-body bg-light">
+    <span><a [routerLink]="['/lugares']">Lugares</a> / Contacto</span>
+</div>
+<div class="container">
+    <label>Nombre</label>
+    <input type="text" class="form-control" [(ngModel)]="lugar.nombre">
+
+    <label>Distancia</label>
+    <input type="number" class="form-control" [(ngModel)]="lugar.distancia">
+
+    <label>Cercania</label>
+    <input type="number" class="form-control" [(ngModel)]="lugar.cercania">
+
+    <label>Plan</label>
+    <input type="text" class="form-control" [(ngModel)]="lugar.plan">
+
+    <label>Descripcion</label>
+    <textarea class="form-control" rows="6" [(ngModel)]="lugar.descripcion"></textarea>
+    <hr>
+    <a class="btn btn-primary" (click)="guardarLugar()">Enviar</a>
+    <a class="btn btn-light" [routerLink]="['/lugares']">Cancelar</a>
+</div>
