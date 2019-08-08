@@ -16,6 +16,15 @@
 
     <label>Descripcion</label>
     <textarea class="form-control" rows="6" [(ngModel)]="lugar.descripcion"></textarea>
+    <h3>Datos de Direccion</h3>
+    <label>Calle</label>
+    <input type="text" class="form-control" [(ngModel)]="lugar.calle">
+
+    <label>Ciudad</label>
+    <input type="text" class="form-control" [(ngModel)]="lugar.ciudad">
+
+    <label>Pais</label>
+    <input type="text" class="form-control" [(ngModel)]="lugar.pais">
     <hr>
     <a class="btn btn-primary" (click)="guardarLugar()">Enviar</a>
     <a class="btn btn-light" [routerLink]="['/lugares']">Cancelar</a>

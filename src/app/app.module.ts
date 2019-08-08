@@ -16,6 +16,7 @@ import { AngularFireDatabaseModule } from "angularfire2/database";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { CrearComponent } from './crear/crear.component';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { HttpClientModule } from "@angular/common/http";
 
 const appRoutes: Routes =
 [
@@ -55,6 +56,7 @@ export const firebaseConfig = {
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    HttpClientModule
   ],
   providers: [
     LugaresService,
