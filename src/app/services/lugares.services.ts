@@ -19,9 +19,19 @@ export class LugaresService
     return this.afDB.list('lugares/').valueChanges();
   }
 
+  public getLugar(id: number)
+  {
+    return this.afDB.object(`lugares/${id}`).valueChanges();
+  }
+
   public buscarPais(id: number)
   {
     return this.paises.filter((pais) => pais.id == id)[0] || null;
+  }
+
+  public editarLugar(lugar: any)
+  {
+    this.afDB.database.ref(`lugares/${lugar.id}`).set(lugar);
   }
 
   public guardarLugar(lugar: any)
