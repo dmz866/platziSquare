@@ -17,6 +17,8 @@ import { AngularFireAuthModule } from "angularfire2/auth";
 import { CrearComponent } from './crear/crear.component';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { HttpClientModule } from "@angular/common/http";
+import { LinkifystrPipe } from './pipes/linkifystr.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes =
 [
@@ -45,10 +47,12 @@ export const firebaseConfig = {
     DetalleComponent,
     LugaresComponent,
     ContactoComponent,
-    CrearComponent
+    CrearComponent,
+    LinkifystrPipe
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     AgmCoreModule.forRoot({ apiKey: 'AIzaSyAwSSgZJ4t8wwfS5U980B0WWhOMlCe40fE' }),

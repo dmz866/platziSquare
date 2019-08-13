@@ -1,24 +1,44 @@
 <div style="text-align:center">
     <agm-map [latitude]="lat" [longitude]="lng">
-        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        <agm-marker *ngFor="let pais of paises" [latitude]="pais.lat" [longitude]="pais.lng"></agm-marker>
     </agm-map>
     <hr>
+    <!--
+      <div id="cuadrado" [@contenedorAnimable]="state" (@contenedorAnimable.start)="animacionInicial($event)" (@contenedorAnimable.done)="animacionFinal($event)"></div>
+    <a class="btn btn-primary" (click)="animar()">Animar</a>
+    -->
+    <div style="float: left;">
+        <a class="btn btn-primary" routerLink="/crear/new" routerLinkActive="router-link-active">Crear nuevo negocio</a>
+    </div>
     <div class="container">
+
         <div class="row">
             <div class="col-md-8">
                 <h2>Lugares Cercanos</h2>
-                <a class="btn btn-primary" routerLink="/crear/new" routerLinkActive="router-link-active">Crear nuevo negocio</a>
                 <ul class="list-group">
                     <ng-container *ngFor="let pais of paises">
-                        <a [routerLink]="['/crear', pais.id]" routerLinkActive="router-link-active">
-                            <li class="list-group-item">{{pais.nombre}}</li>
-                            <!--*ngIf="pais.activo" -->
-                        </a>
+                        <li class="list-group-item">
+                            <a [routerLink]="['/crear', pais.id]" routerLinkActive="router-link-active">
+                                <h3>{{pais.nombre}}</h3>
+                            </a>
+                            <br>
+                            <small>Creado: {{pais.id | date: 'short'}}</small>
+                            <p [innerHtml]="pais.descripcion | linkifystr"></p>
+                        </li>
+                        <!--*ngIf="pais.activo" -->
                     </ng-container>
                 </ul>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" [@contenedorAnimable]="state">
                 <h2>Destacados</h2>
+                <ng-container *ngFor="let pais of paises">
+                    <div class="alert alert-success padding" *ngIf="pais.plan == 'pagado'">
+                        <a [routerLink]="['/crear', pais.id]" routerLinkActive="router-link-active">
+                            <h3>{{pais.nombre}}</h3>
+                        </a>
+                        <p [innerHtml]="pais.descripcion | linkifystr"></p>
+                    </div>
+                </ng-container>
             </div>
         </div>
     </div>

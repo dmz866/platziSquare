@@ -10,6 +10,8 @@ export class CrearComponent
 {
   lugar: any = {};
   id: any;
+  mensaje  = '';
+
   constructor(private lugaresServ: LugaresService, private route: ActivatedRoute)
   {
     this.id = this.route.snapshot.params['id'];
@@ -36,12 +38,12 @@ export class CrearComponent
       {
         this.lugar.id = Date.now();
         this.lugaresServ.guardarLugar(this.lugar);
-        alert('Lugar creado');
+        this.mensaje = 'Lugar creado';
       }
       else
       {
         this.lugaresServ.editarLugar(this.lugar);
-        alert('Lugar actualizado');
+        this.mensaje = 'Lugar actualizado';
       }
       this.lugar = {};
     });
