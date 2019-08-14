@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AutorizacionService } from './services/autorizacion.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent
 {
-  constructor()
+  isLogged = false;
+
+  constructor(private authServ: AutorizacionService)
   {
+    authServ.isLogged().subscribe(data =>
+    {
+      this.isLogged = (data && data.uid) ? true : false;
+    }, error =>
+    {
+      this.isLogged = false;
+    });
   }
 
   hacerAlgo()

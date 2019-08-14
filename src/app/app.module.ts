@@ -10,7 +10,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { DetalleComponent } from './detalle/detalle.component';
 import { LugaresComponent } from './lugares/lugares.component';
 import { ContactoComponent } from './contacto/contacto.component';
-import { LugaresService } from './services/lugares.services';
+import { RegistroComponent } from './registro/registro.component';
+import { LoginComponent } from './login/login.component';
+import { LugaresService } from './services/lugares.service';
 import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { AngularFireAuthModule } from "angularfire2/auth";
@@ -19,13 +21,17 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { HttpClientModule } from "@angular/common/http";
 import { LinkifystrPipe } from './pipes/linkifystr.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AutorizacionService } from './services/autorizacion.service';
+import { MyGuardService } from './services/my-guard.service';
 
 const appRoutes: Routes =
 [
   {path: '', component: LugaresComponent},
   {path: 'lugares', component: LugaresComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'contacto', component: ContactoComponent},
-  {path: 'crear/:id', component: CrearComponent},
+  {path: 'registro', component: RegistroComponent},
+  {path: 'crear/:id', component: CrearComponent, canActivate: [MyGuardService]},
   {path: 'detalle/:id', component: DetalleComponent}
 ];
 
@@ -48,6 +54,8 @@ export const firebaseConfig = {
     LugaresComponent,
     ContactoComponent,
     CrearComponent,
+    LoginComponent,
+    RegistroComponent,
     LinkifystrPipe
   ],
   imports: [
@@ -64,7 +72,9 @@ export const firebaseConfig = {
   ],
   providers: [
     LugaresService,
-    AngularFirestore
+    AngularFirestore,
+    AutorizacionService,
+    MyGuardService
   ],
   bootstrap: [AppComponent]
 })

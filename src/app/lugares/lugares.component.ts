@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { LugaresService } from '../services/lugares.services';
 import { trigger, state, style, transition, animate } from "@angular/animations";
+import { LugaresService } from '../services/lugares.service';
 
 @Component({
   selector: 'app-lugares',
